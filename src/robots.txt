@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://asafyildiz41.github.io/harita-seo-egitim/sitemap.xml
