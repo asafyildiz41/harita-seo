@@ -277,6 +277,57 @@
       gap: 14px;
     }
   }
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 48px;
+}
+
+.hero-metin h1 {
+  margin-top: 0;
+}
+
+.hero-harita {
+  margin: 0;
+  padding: 24px;
+  background: var(--yuzey);
+  border: 1px solid var(--cizgi);
+  border-radius: 20px;
+  box-shadow: var(--golge);
+}
+
+#kocaeli-haritasi {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--vurgu);
+}
+
+.hero-harita figcaption {
+  color: var(--yazi);
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+.hero-harita small {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: normal;
+  color: var(--ikincil-yazi);
+}
+
+.hero-harita a {
+  color: inherit;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
 </style>
   <script
     type='application/ld+json'>{"@context":"https://schema.org","@type":"ProfessionalService","name":"Marmara Harita Mühendislik","url":"https://asafyildiz41.github.io/harita-seo/","areaServed":"Kocaeli","description":"SEO eğitimi için oluşturulmuş kurgusal harita mühendisliği işletmesi."}</script>
@@ -291,11 +342,30 @@
 </nav>
   </header>
   <main>
-    <section class='hero'>
-      <h1>İzmit Harita Mühendisi ve Ölçüm Hizmetleri</h1>
-      <p>İzmit ve Kocaeli genelinde aplikasyon, plankote, parsel ölçümü ve halihazır harita çalışmalarına yönelik
-        profesyonel ölçüm ve harita mühendisliği çözümleri.</p><a class='btn' href='#iletisim'>Teklif Al</a>
-    </section>
+    <section class="hero">
+  <div class="hero-metin">
+    <h1>İzmit Harita Mühendisi ve Ölçüm Hizmetleri</h1>
+    <p>İzmit ve Kocaeli genelinde aplikasyon, plankote,
+      parsel ölçümü ve halihazır harita çalışmalarına yönelik
+      profesyonel ölçüm ve harita mühendisliği çözümleri.</p>
+    <a class="btn" href="#iletisim">Teklif Al</a>
+  </div>
+
+  <figure class="hero-harita">
+    <svg id="kocaeli-haritasi" viewBox="0 0 600 400"
+      role="img" aria-labelledby="harita-basligi">
+      <title id="harita-basligi">Kocaeli il sınırı haritası</title>
+    </svg>
+    <figcaption>
+      Kocaeli · İzmit
+      <small>
+        Harita verisi:
+        <a href="https://www.geoboundaries.org/">geoBoundaries</a>
+        / © OpenStreetMap katkıda bulunanlar
+      </small>
+    </figcaption>
+  </figure>
+</section>
     <section class='wrap' id='hizmetler'>
       <h2>Harita Mühendisliği Hizmetleri</h2>
       <div class='cards'>
@@ -410,6 +480,82 @@ alert('Test tamamlandı. Bu örnek form gerçek bir talep göndermez.');
       localStorage.setItem('harita-tema', koyuTema ? 'dark' : 'light');
     } catch (error) {}
   });
+</script>
+<script>
+  async function kocaeliHaritasiniCiz() {
+    const svg = document.getElementById('kocaeli-haritasi');
+    const svgAdresi = 'http://www.w3.org/2000/svg';
+
+    try {
+      const yanit = await fetch(
+        'https://raw.githubusercontent.com/wmgeolab/geoBoundaries/9469f09/releaseData/gbOpen/TUR/ADM1/geoBoundaries-TUR-ADM1_simplified.geojson'
+      );
+
+      if (!yanit.ok) throw new Error('Harita verisi alınamadı');
+
+      const veri = await yanit.json();
+      const kocaeli = veri.features.find(function (bolge) {
+        return Object.values(bolge.properties).some(function (deger) {
+          return String(deger).toLowerCase() === 'kocaeli';
+        });
+      });
+
+      if (!kocaeli) throw new Error('Kocaeli bulunamadı');
+
+      const geometri = kocaeli.geometry;
+      const poligonlar = geometri.type === 'Polygon'
+        ? [geometri.coordinates]
+        : geometri.coordinates;
+
+      const noktalar = poligonlar.flat(2);
+      const boylamlar = noktalar.map(nokta => nokta[0]);
+      const enlemler = noktalar.map(nokta => nokta[1]);
+
+      const sol = Math.min(...boylamlar);
+      const sag = Math.max(...boylamlar);
+      const alt = Math.min(...enlemler);
+      const ust = Math.max(...enlemler);
+
+      const duzeltme = Math.cos(((alt + ust) / 2) * Math.PI / 180);
+      const genislik = (sag - sol) * duzeltme;
+      const yukseklik = ust - alt;
+      const olcek = Math.min(520 / genislik, 320 / yukseklik);
+      const xBosluk = (600 - genislik * olcek) / 2;
+      const yBosluk = (400 - yukseklik * olcek) / 2;
+
+      function koordinat(nokta) {
+        const x = xBosluk + (nokta[0] - sol) * duzeltme * olcek;
+        const y = yBosluk + (ust - nokta[1]) * olcek;
+        return x.toFixed(2) + ',' + y.toFixed(2);
+      }
+
+      const cizgi = document.createElementNS(svgAdresi, 'path');
+      const yol = poligonlar.map(function (poligon) {
+        return poligon.map(function (halka) {
+          return 'M' + halka.map(koordinat).join(' L') + ' Z';
+        }).join(' ');
+      }).join(' ');
+
+      cizgi.setAttribute('d', yol);
+      cizgi.setAttribute('fill', 'currentColor');
+      cizgi.setAttribute('fill-opacity', '0.12');
+      cizgi.setAttribute('fill-rule', 'evenodd');
+      cizgi.setAttribute('stroke', 'currentColor');
+      cizgi.setAttribute('stroke-width', '2.5');
+      cizgi.setAttribute('stroke-linejoin', 'round');
+      svg.appendChild(cizgi);
+    } catch (error) {
+      const mesaj = document.createElementNS(svgAdresi, 'text');
+      mesaj.setAttribute('x', '300');
+      mesaj.setAttribute('y', '200');
+      mesaj.setAttribute('text-anchor', 'middle');
+      mesaj.setAttribute('fill', 'currentColor');
+      mesaj.textContent = 'Harita yüklenemedi';
+      svg.appendChild(mesaj);
+    }
+  }
+
+  kocaeliHaritasiniCiz();
 </script>
 </body>
 
