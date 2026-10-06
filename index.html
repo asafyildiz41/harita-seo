@@ -201,9 +201,26 @@ nav a {
   belgeleri hazırlanmalıdır.</p>
 <p>Bu site kurgusal bir SEO eğitim projesidir.
   Gerçek hizmet veya teklif talebi kabul edilmemektedir.</p>
+  <form id="teklif-formu">
+  <label for="hizmet-secimi">Hizmet seçin</label>
+  <select id="hizmet-secimi" name="hizmet" required>
+    <option value="">Seçiniz</option>
+    <option value="aplikasyon">Aplikasyon</option>
+    <option value="plankote">Plankote</option>
+    <option value="parsel-olcumu">Parsel Ölçümü</option>
+    <option value="halihazir-harita">Halihazır Harita</option>
+  </select>
+  <button type="submit">Örnek Talebi Test Et</button>
+</form>
     </section>
   </main>
   <footer>© Marmara Harita — Kurgusal SEO Eğitim Projesi</footer>
+<script>
+  document.getElementById('teklif-formu').addEventListener('submit', function (event) {
+    event.preventDefault();
+    alert('Test tamamlandı. Bu örnek form gerçek bir talep göndermez.');
+  });
+</script>
 </body>
 
 </html>
