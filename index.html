@@ -427,6 +427,40 @@ footer p {
   font-size: 14px;
   line-height: 1.7;
 }
+#iletisim {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 400px);
+  column-gap: 48px;
+  align-items: start;
+}
+
+#iletisim > h2,
+#iletisim > p {
+  grid-column: 1;
+}
+
+#teklif-formu {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  width: 100%;
+  margin-top: 0;
+  padding: 24px;
+  background: var(--yuzey);
+  border: 1px solid var(--cizgi);
+  border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+  #iletisim {
+    grid-template-columns: 1fr;
+  }
+
+  #teklif-formu {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 20px;
+  }
+}
 </style>
   <script
     type='application/ld+json'>{"@context":"https://schema.org","@type":"ProfessionalService","name":"Marmara Harita Mühendislik","url":"https://asafyildiz41.github.io/harita-seo/","areaServed":"Kocaeli","description":"SEO eğitimi için oluşturulmuş kurgusal harita mühendisliği işletmesi."}</script>
