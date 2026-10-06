@@ -18,168 +18,265 @@
     content='İzmit harita mühendisi hizmetleri kapsamında aplikasyon, plankote, parsel ölçümü ve halihazır harita çalışmalarında profesyonel ölçüm çözümleri.'>
   <link rel="canonical" href="https://asafyildiz41.github.io/harita-seo/">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      color: #18212b
-    }
+  :root {
+    color-scheme: light;
+    --zemin: #f7f7f2;
+    --yuzey: #ffffff;
+    --hero: #eaf2f5;
+    --yazi: #182c49;
+    --ikincil-yazi: #475972;
+    --cizgi: #d5dfe7;
+    --vurgu: #244e78;
+    --turkuaz: #087f8c;
+    --turuncu: #ff7900;
+    --buton-yazi: #17243a;
+    --golge: 0 8px 24px rgba(24, 44, 73, 0.08);
+  }
 
-    header {
-      background: #0e3a5d;
-      color: white;
-      padding: 18px 8%
-    }
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --zemin: #0b1220;
+    --yuzey: #142033;
+    --hero: #101c2e;
+    --yazi: #f3f6fc;
+    --ikincil-yazi: #b8c7da;
+    --cizgi: #304057;
+    --vurgu: #54e0df;
+    --turkuaz: #54e0df;
+    --turuncu: #ff890a;
+    --buton-yazi: #101827;
+    --golge: 0 8px 24px rgba(0, 0, 0, 0.22);
+  }
 
-    nav a {
-      color: white;
-      margin-right: 18px;
-      text-decoration: none
-    }
+  * {
+    box-sizing: border-box;
+  }
 
-    .hero {
-      padding: 70px 8%;
-      background: #eef5f8
-    }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: var(--zemin);
+    color: var(--yazi);
+  }
 
-    .hero h1 {
-      font-size: 42px;
-      max-width: 750px
-    }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 20px 8%;
+    background: var(--yuzey);
+    border-bottom: 1px solid var(--cizgi);
+  }
 
-    .btn {
-      display: inline-block;
-      background: #0e3a5d;
-      color: #fff;
-      padding: 12px 18px;
-      text-decoration: none;
-      border-radius: 6px
-    }
+  header strong {
+    font-size: 20px;
+  }
 
-    .wrap {
-      padding: 45px 8%
-    }
+  header nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px
-    }
+  nav a {
+    color: var(--yazi);
+    text-decoration: none;
+    padding: 8px 0;
+  }
 
-    .card {
-      border: 1px solid #ddd;
-      padding: 22px;
-      border-radius: 8px
-    }
+  nav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
 
-    footer {
-      background: #18212b;
-      color: white;
-      padding: 30px 8%
-    }
-#sss summary {
-  cursor: pointer;
-}
-  #sss details {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 18px;
-  margin-bottom: 12px;
-}
-
-#sss summary {
-  font-weight: bold;
-}
-
-#sss details p {
-  line-height: 1.6;
-  margin-bottom: 0;
-}
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-header nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-}
-
-nav a {
-  margin-right: 0;
-}
-
-@media (max-width: 600px) {
   .hero {
-    padding: 40px 8%;
+    padding: 70px 8%;
+    background: var(--hero);
+    border-bottom: 1px solid var(--cizgi);
   }
 
   .hero h1 {
-    font-size: 30px;
+    font-size: 42px;
+    max-width: 750px;
+    line-height: 1.15;
   }
-}
-#teklif-formu {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 400px;
-  margin-top: 24px;
-}
 
-#teklif-formu label {
-  font-weight: bold;
-}
+  .hero p {
+    max-width: 680px;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    color: var(--ikincil-yazi);
+  }
 
-#teklif-formu select,
-#teklif-formu button {
-  font: inherit;
-  padding: 12px;
-  border-radius: 6px;
-}
+  .btn,
+  #teklif-formu button {
+    display: inline-block;
+    background: var(--turuncu);
+    color: var(--buton-yazi);
+    padding: 14px 22px;
+    border: 0;
+    border-radius: 8px;
+    font: inherit;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 121, 0, 0.18);
+  }
 
-#teklif-formu select {
-  border: 1px solid #aaa;
-  background: white;
-}
+  .btn:hover,
+  #teklif-formu button:hover {
+    filter: brightness(1.08);
+  }
 
-#teklif-formu button {
-  border: 0;
-  background: #0e3a5d;
-  color: white;
-  cursor: pointer;
-}
-.hero p {
-  max-width: 680px;
-  font-size: 18px;
-  line-height: 1.7;
-  margin-bottom: 24px;
-}
+  .wrap {
+    padding: 48px 8%;
+  }
 
-.hero h1 {
-  line-height: 1.15;
-}
+  .wrap h2 {
+    margin-top: 0;
+    font-size: 28px;
+  }
 
-.wrap p {
-  line-height: 1.7;
-}
+  .wrap p {
+    line-height: 1.7;
+    color: var(--ikincil-yazi);
+  }
 
-.card h3 {
-  margin-top: 0;
-}
-.card {
-  border: 1px solid #dce5ec;
-  border-top: 4px solid #0e3a5d;
-  border-radius: 12px;
-  padding: 26px;
-  box-shadow: 0 6px 18px rgba(14, 58, 93, 0.06);
-}
+  #hakkimizda,
+  #iletisim {
+    background: var(--hero);
+    border-top: 1px solid var(--cizgi);
+    border-bottom: 1px solid var(--cizgi);
+  }
 
-.card h3 {
-  color: #0e3a5d;
-}
+  #hakkimizda p,
+  #iletisim p {
+    max-width: 850px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-top: 4px solid var(--vurgu);
+    border-radius: 12px;
+    padding: 26px;
+    box-shadow: var(--golge);
+  }
+
+  .card h3 {
+    margin-top: 0;
+    color: var(--vurgu);
+  }
+
+  #sss details {
+    background: var(--yuzey);
+    border: 1px solid var(--cizgi);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+
+  #sss summary {
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
+  #sss details[open] {
+    border-color: var(--turkuaz);
+  }
+
+  #sss details p {
+    margin-bottom: 0;
+  }
+
+  #teklif-formu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+    margin-top: 24px;
+  }
+
+  #teklif-formu label {
+    font-weight: bold;
+  }
+
+  #teklif-formu select {
+    width: 100%;
+    font: inherit;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--cizgi);
+    background: var(--yuzey);
+    color: var(--yazi);
+  }
+
+  #tema-dugmesi {
+    padding: 10px 14px;
+    border: 1px solid var(--cizgi);
+    border-radius: 8px;
+    background: var(--hero);
+    color: var(--yazi);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  select:focus-visible,
+  summary:focus-visible {
+    outline: 3px solid var(--turkuaz);
+    outline-offset: 4px;
+  }
+
+  footer {
+    background: var(--yuzey);
+    color: var(--ikincil-yazi);
+    padding: 30px 8%;
+    border-top: 1px solid var(--cizgi);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding: 40px 8%;
+    }
+
+    .hero h1 {
+      font-size: 30px;
+    }
+
+    .hero p {
+      font-size: 16px;
+    }
+
+    .wrap {
+      padding: 36px 8%;
+    }
+
+    .wrap h2 {
+      font-size: 24px;
+    }
+
+    .cards {
+      grid-template-columns: 1fr;
+    }
+
+    header nav {
+      gap: 14px;
+    }
+  }
 </style>
   <script
     type='application/ld+json'>{"@context":"https://schema.org","@type":"ProfessionalService","name":"Marmara Harita Mühendislik","url":"https://asafyildiz41.github.io/harita-seo/","areaServed":"Kocaeli","description":"SEO eğitimi için oluşturulmuş kurgusal harita mühendisliği işletmesi."}</script>
@@ -188,7 +285,10 @@ nav a {
 <body>
   <header><strong>Marmara Harita</strong>
     <nav><a href='#hizmetler'>Hizmetler</a><a href='#hakkimizda'>Hakkımızda</a><a
-        href='#iletisim'>İletişim</a></nav>
+        href='#iletisim'>İletişim</a><button id="tema-dugmesi" type="button" aria-pressed="false">
+  Koyu tema
+</button>
+</nav>
   </header>
   <main>
     <section class='hero'>
@@ -284,6 +384,32 @@ gtag('event', 'demo_teklif_test', {
 
 alert('Test tamamlandı. Bu örnek form gerçek bir talep göndermez.');
 });
+</script>
+<script>
+  const temaDugmesi = document.getElementById('tema-dugmesi');
+
+  function temayiUygula(koyuTema) {
+    document.documentElement.dataset.theme = koyuTema ? 'dark' : 'light';
+    temaDugmesi.textContent = koyuTema ? 'Açık tema' : 'Koyu tema';
+    temaDugmesi.setAttribute('aria-pressed', String(koyuTema));
+  }
+
+  let kayitliTema = null;
+
+  try {
+    kayitliTema = localStorage.getItem('harita-tema');
+  } catch (error) {}
+
+  temayiUygula(kayitliTema === 'dark');
+
+  temaDugmesi.addEventListener('click', function () {
+    const koyuTema = document.documentElement.dataset.theme !== 'dark';
+    temayiUygula(koyuTema);
+
+    try {
+      localStorage.setItem('harita-tema', koyuTema ? 'dark' : 'light');
+    } catch (error) {}
+  });
 </script>
 </body>
 
