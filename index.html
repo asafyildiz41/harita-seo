@@ -247,9 +247,14 @@ nav a {
   <footer>© Marmara Harita — Kurgusal SEO Eğitim Projesi</footer>
 <script>
   document.getElementById('teklif-formu').addEventListener('submit', function (event) {
-    event.preventDefault();
-    alert('Test tamamlandı. Bu örnek form gerçek bir talep göndermez.');
-  });
+   event.preventDefault();
+
+gtag('event', 'demo_teklif_test', {
+  hizmet_turu: document.getElementById('hizmet-secimi').value
+});
+
+alert('Test tamamlandı. Bu örnek form gerçek bir talep göndermez.');
+});
 </script>
 </body>
 
