@@ -411,6 +411,22 @@ footer {
   text-decoration: underline;
   text-underline-offset: 5px;
 }
+footer {
+  padding-top: 36px;
+  padding-bottom: 36px;
+}
+
+footer strong {
+  color: var(--yazi);
+  font-size: 20px;
+}
+
+footer p {
+  max-width: 650px;
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
 </style>
   <script
     type='application/ld+json'>{"@context":"https://schema.org","@type":"ProfessionalService","name":"Marmara Harita Mühendislik","url":"https://asafyildiz41.github.io/harita-seo/","areaServed":"Kocaeli","description":"SEO eğitimi için oluşturulmuş kurgusal harita mühendisliği işletmesi."}</script>
@@ -528,7 +544,11 @@ footer {
 </form>
     </section>
   </main>
-  <footer>© Marmara Harita — Kurgusal SEO Eğitim Projesi</footer>
+  <footer>
+  <strong>Marmara Harita</strong>
+  <p>İzmit ve Kocaeli için harita mühendisliği ve ölçüm hizmetleri.</p>
+  <p>Bu site kurgusal bir SEO eğitim projesidir. Gerçek hizmet veya teklif talebi alınmaz.</p>
+</footer>
 <script>
   document.getElementById('teklif-formu').addEventListener('submit', function (event) {
    event.preventDefault();
