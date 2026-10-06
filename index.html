@@ -494,7 +494,7 @@ alert('Test tamamlandı. Bu örnek form gerçek bir talep göndermez.');
 
     try {
       const yanit = await fetch(
-        'https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09/releaseData/gbOpen/TUR/ADM1/geoBoundaries-TUR-ADM1_simplified.geojson'
+        './kocaeli.geojson'
       );
 
       if (!yanit.ok) throw new Error('Harita verisi alınamadı');
