@@ -94,6 +94,33 @@
   line-height: 1.6;
   margin-bottom: 0;
 }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+nav a {
+  margin-right: 0;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 40px 8%;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+}
 </style>
   <script
     type='application/ld+json'>{"@context":"https://schema.org","@type":"ProfessionalService","name":"Marmara Harita Mühendislik","url":"https://asafyildiz41.github.io/harita-seo/","areaServed":"Kocaeli","description":"SEO eğitimi için oluşturulmuş kurgusal harita mühendisliği işletmesi."}</script>
@@ -101,7 +128,7 @@
 
 <body>
   <header><strong>Marmara Harita</strong>
-    <nav style='float:right'><a href='#hizmetler'>Hizmetler</a><a href='#hakkimizda'>Hakkımızda</a><a
+    <nav><a href='#hizmetler'>Hizmetler</a><a href='#hakkimizda'>Hakkımızda</a><a
         href='#iletisim'>İletişim</a></nav>
   </header>
   <main>
